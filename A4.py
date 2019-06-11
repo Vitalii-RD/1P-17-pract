@@ -1,20 +1,26 @@
 import datetime
-from random import randint
 
 def printTimeStamp(name):
 
   print('\nАвтор програми: ' + name)
   print('Час компіляції: ' + str(datetime.datetime.now()))
 
-article = ["the", "a", "one", "some", "any"]
-noun = ["boy", "girl", "dog", "town", "car"]
-verb = ["drove", "jumped", "ran", "walked", "skipped"]
-preposition = ["to", "from", "over", "under", "on"]
-listok = [article, noun, verb, preposition, article, noun]
-for i in range(10):
-    sentence = []
-    for j in listok:
-        sentence.append(j[randint(0,len(j)-1)])
-    sentence[0] = sentence[0].capitalize()
-    print(str(i+1)+":"," ".join(sentence))
+print("Для зупинення введіть \"end\"")
+gen = 0
+while True:
+    name = input("Назва страви: ")
+    amount = int(input("Кількість страви: "))
+    price = int(input("Ціна страви: "))
+    gen += amount*price
+    dali = input("Ще страава:")
+    if dali == "end":
+        break
+chayovi = gen*0.14
+podatok = gen * 0.18
+sum_price = gen + podatok + chayovi
+print("Ціна: ",gen,"\n"+
+"Чайоі: %.2f" % chayovi,"\n"+
+"Податок: %.2f" % podatok,"\n"+
+"Всього: ", sum_price)
+
 printTimeStamp("Віталій Дудник")
