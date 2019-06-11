@@ -1,45 +1,18 @@
-import datetime
-
-def printTimeStamp(name):
-
-  print('\nАвтор програми: ' + name)
-  print('Час компіляції: ' + str(datetime.datetime.now()))
-
-def is_number(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        return False
-
-values = []
-expression = input("Постфіксований вираз: ")
-tokens = [i for i in expression]
-for i in range(len(tokens)-1):
-    try :
-        if tokens[i] == " ":
-            tokens.remove(" ")
-        while True:
-            if tokens[i].isdigit() and tokens[i+1].isdigit():
-                tokens[i] = tokens[i] + tokens[i+1]
-                tokens.remove(tokens[i+1])
-            if tokens[i] in "+-" and tokens[i+1].isdigit():
-                tokens[i] = tokens[i] + tokens[i + 1]
-                tokens.remove(tokens[i + 1])
-            else:
-                break
-    except IndexError:
-        pass
-
-for token in tokens:
-    if is_number(token):
-        values.append(int(token))
+neadekvat=1
+while  neadekvat ==1:
+    neadekvat-=1
+    year = int(input("Введіть рік: "))
+    month = int(input("Введіть місяць: "))
+    day = int(input("Введіть день: "))
+    feva= int(str(year)[-2:])
+    if (month or year or day) <= 0 or (month==2 and year%4==0 and day>=29):
+        print("Ти неaдаекват!!!")
+        neadekvat+=1
+        break
+    if (day == 31 and (month == 1 or 3 or 5 or 7 or 8 or 10 or 12)) or (day== 30 and (month == 2 or 4 or 6 or 9 or 11)) or (day==28 and month== 2 and feva%4 !=0) or (day==29 and month== 2 and feva%4 ==0):
+        day= 1
+        year =year if month != 12 else year+1
+        month=1 if month==12 else month+1
     else:
-        right = values[-1]
-        values.remove(values[-1])
-        left = values[-1]
-        values.remove(values[-1])
-        result = eval("{} {} {}".format(left, token ,right))
-        values.append(result)
-print(values[0])
-printTimeStamp("Віталій Дудник")
+        day+=1
+    print("Наступний день: {}-{}-{}".format(year, (month if month>9 else "0"+str(month)), (day if day>9 else "0"+str(day))))

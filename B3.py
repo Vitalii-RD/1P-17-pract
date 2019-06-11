@@ -1,27 +1,10 @@
-import datetime
+min= int(input("Введіть кіл-сть витрачених хвилин: "))
+mes= int(input("Введіть кіл-сть написаних повідомлень: "))
+rakhunok=35
+if min> 200:
+    rakhunok+= (min - 200) * 0.17
+if mes > 50:
+    rakhunok+= (mes - 50) * 0.15
+print("Рахунок з податками: {:.2f}".format(rakhunok))
+print("Чистий рахунок: {:.2f}".format(rakhunok-0.44-(rakhunok*0.05)))
 
-def printTimeStamp(name):
-
-  print('\nАвтор програми: ' + name)
-  print('Час компіляції: ' + str(datetime.datetime.now()))
-
-expression = input("Математичний вираз: ")
-tokens = [i for i in expression.replace(" ","")]
-for i in range(len(tokens)-1):
-    try :
-        while True:
-            if tokens[i].isdigit() and tokens[i+1].isdigit():
-                tokens[i] = tokens[i] + tokens[i+1]
-                tokens.remove(tokens[i+1])
-            else:
-                break
-    except IndexError:
-        pass
-for i in tokens:
-    if i.isdigit():
-        print(i, "- число")
-    elif i in "()":
-        print(i, "- дужка")
-    else:
-        print(i, "- оператр")
-printTimeStamp("Віталій Дудник")
