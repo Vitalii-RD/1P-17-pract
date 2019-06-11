@@ -5,24 +5,15 @@ def printTimeStamp(name):
   print('\nАвтор програми: ' + name)
   print('Час компіляції: ' + str(datetime.datetime.now()))
 
-listok1 = []
-while True:
-    number = input("Введіть число:")
-    if number == "":
-        break
-    elif not number.isdigit():
-        print("Це не число")
-    else:
-        listok1.append(int(number))
-average = sum(listok1) / len(listok1)
-listok2 = []
-listok3 = []
-for i in listok1:
-    if i < average:
-        listok2.append(i)
-    else:
-        listok3.append(i)
+kPa = int(input("Тиск(кПа): "))
+psi = kPa * 145.038 * 10**(-3)
+mmrt = kPa * 7.5
+tex_atm = kPa * 0.102 * 10**(-1)
+phis_atm = kPa * 0.987 * 10**(-2)
+print(
+"Міліметри ртутного стовпчика -",mmrt,"\n"+
+"Фунти на квадратний дюйм -",psi,"\n"+
+"Технічна атмосфера -",tex_atm,"\n"+
+"Фізична атмосфера -",phis_atm)
 
-print("1:", listok2)
-print("2:", listok3)
 printTimeStamp("Віталій Дудник")
