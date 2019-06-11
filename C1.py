@@ -1,56 +1,34 @@
-import datetime
+import datetime,random
 
 def printTimeStamp(name):
 
   print('\nАвтор програми: ' + name)
   print('Час компіляції: ' + str(datetime.datetime.now()))
 
-def precedence(operator):
-    if operator in ["-","+"]:
-        return 1
-    if operator in ["*","/"]:
-        return 2
-    if operator == "^":
-        return 3
-    else:
-        return -1
+red = ["1","3","5","7","9","12","14","16","18","19","21","23','25",'27','30',"32","34","36"]
+random_numb = random.randint(0,37)
+if random_numb == 37:
+    random_numb = "00"
+print("На рулетці випало",random_numb,"\n"+"Виплатити",random_numb)
 
-operators = []
-postfixs =[]
-expression = input("Інфіксований вираз: ")
+if str(random_numb) in "00":
+    print("Виплатити зелене")
+elif str(random_numb) in red:
+    print("Виплатити красне")
+else:
+    print("Виплатити чорне")
 
-tokens = [i for i in expression.replace(" ","")]
-for i in range(len(tokens)-1):
-    try :
-        while True:
-            if tokens[i].isdigit() and tokens[i+1].isdigit():
-                tokens[i] = tokens[i] + tokens[i+1]
-                tokens.remove(tokens[i+1])
-            else:
-                break
-    except IndexError:
-        pass
+if str(random_numb) == "0" and "00":
+    pass
+elif int(random_numb) % 2 == 0:
+    print("Виплатити парні")
+else:
+    print("Виплатити непарні")
 
-for token in tokens:
-    if token.isdigit():
-        postfixs.append(token)
-    if token in "*/+-^":
-        while operators != [] and operators[-1] != "(" and  precedence(token) < precedence(operators[-1]):
-            print("2: add",operators[-1],"by tok:", token)
-            postfixs.append(operators[-1])
-            operators.remove(operators[-1])
-        operators.append(token)
-    if token == "(":
-        operators.append(token)
-    if token == ")":
-        while operators[-1] != "(":
-            postfixs.append(operators[-1])
-            operators.remove(operators[-1])
-        operators.remove("(")
-
-while operators != []:
-    postfixs.append(operators[-1])
-    operators.remove(operators[-1])
-
-print(" ".join(postfixs))
+if 0 < random_numb < 19:
+    print("Виплатити від 1 до 18")
+elif 18 < random_numb < 37:
+    print("Виплатити від 19 до 36")
+else:
+    pass
 printTimeStamp("Віталій Дудник")
